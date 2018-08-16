@@ -20,12 +20,12 @@ std::string to_string(T value)
 
 void reportError(cl_int err, int line)
 {
-	if (CL_SUCCESS == err)
-		return;
+    if (CL_SUCCESS == err)
+        return;
 
-	// Таблица с кодами ошибок:
-	// https://github.com/martijnberger/clew/blob/ce90943aa691a2d1b6a441e0722063bc832cdc1c/include/clew.h#L1371-L1431
-	std::string message = "OpenCL error code = " + to_string(err) + " encountered at line " + to_string(line) + "!";
+    // Таблица с кодами ошибок:
+    // https://github.com/martijnberger/clew/blob/ce90943aa691a2d1b6a441e0722063bc832cdc1c/include/clew.h#L1371-L1431
+    std::string message = "OpenCL error code = " + to_string(err) + " encountered at line " + to_string(line) + "!";
     throw std::runtime_error(message);
 }
 
