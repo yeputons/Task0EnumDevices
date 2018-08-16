@@ -1,8 +1,5 @@
-#ifdef __APPLE__
-    #include "OpenCL/opencl.h"
-#else
-    #include "CL/cl.h"
-#endif
+#include <CL/cl.h>
+#include <libclew/ocl_init.h>
 
 #include <vector>
 #include <sstream>
@@ -34,6 +31,10 @@ void reportError(cl_int err, int line)
 
 int main()
 {
+    // Пытаемся слинковаться с символами OpenCL API в runtime (через библиотеку clew)
+    if (!ocl_init())
+        throw std::runtime_error("Can't init OpenCL driver!");
+
     // Откройте 
     // https://www.khronos.org/registry/OpenCL/sdk/1.2/docs/man/xhtml/
     // Нажмите слева: "OpenCL Runtime" -> "Query Platform Info" -> "clGetPlatformIDs"
@@ -67,7 +68,7 @@ int main()
         // TODO 1.2
         // Аналогично тому как был запрошен список идентификаторов всех платформ - так и с названием платформы, теперь, когда известна длина названия - его можно запросить:
         std::vector<unsigned char> platformName(platformNameSize, 0);
-        OCL_SAFE_CALL(clGetPlatformInfo(platform, CL_PLATFORM_NAME, platformNameSize, platformName.data(), nullptr));
+        // clGetPlatformInfo(...);
         std::cout << "    Platform name: " << platformName.data() << std::endl;
 
         // TODO 1.3
@@ -83,7 +84,7 @@ int main()
             // - Название устройства
             // - Тип устройства (видеокарта/процессор/что-то странное)
             // - Размер памяти устройства в мегабайтах
-            // - Хотя бы еще пару или более свойств устройства, которые вам покажутся наиболее интересными
+            // - Еще пару или более свойств устройства, которые вам покажутся наиболее интересными
         }
     }
 
