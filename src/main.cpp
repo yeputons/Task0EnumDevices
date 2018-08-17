@@ -32,7 +32,7 @@ void reportError(cl_int err, const std::string &filename, int line)
 
 int main()
 {
-    // Пытаемся слинковаться с символами OpenCL API в runtime (через библиотеку clew)
+    // Пытаемся слинковаться с символами OpenCL API в runtime (через библиотеку libs/clew)
     if (!ocl_init())
         throw std::runtime_error("Can't init OpenCL driver!");
 
