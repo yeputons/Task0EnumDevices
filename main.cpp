@@ -15,18 +15,19 @@ std::string to_string(T value)
     return ss.str();
 }
 
-void reportError(cl_int err, int line)
+void reportError(cl_int err, const std::string &filename, int line)
 {
     if (CL_SUCCESS == err)
         return;
 
     // Таблица с кодами ошибок:
-    // https://github.com/martijnberger/clew/blob/ce90943aa691a2d1b6a441e0722063bc832cdc1c/include/clew.h#L1371-L1431
-    std::string message = "OpenCL error code = " + to_string(err) + " encountered at line " + to_string(line) + "!";
+    // libs/clew/CL/cl.h:103
+    // P.S. Быстрый переход к файлу в CLion: Ctrl+Shift+N -> cl.h (или даже с номером строки: cl.h:103) -> Enter
+    std::string message = "OpenCL error code " + to_string(err) + " encountered at " + filename + ":" + to_string(line);
     throw std::runtime_error(message);
 }
 
-#define OCL_SAFE_CALL(expr) reportError(expr, __LINE__)
+#define OCL_SAFE_CALL(expr) reportError(expr, __FILE__, __LINE__)
 
 
 int main()
@@ -60,7 +61,8 @@ int main()
         // Т.к. это некорректный идентификатор параметра платформы - то метод вернет код ошибки
         // Макрос OCL_SAFE_CALL заметит это, и кинет ошибку с кодом
         // Откройте таблицу с кодами ошибок:
-        // https://github.com/martijnberger/clew/blob/ce90943aa691a2d1b6a441e0722063bc832cdc1c/include/clew.h#L1371-L1431
+        // libs/clew/CL/cl.h:103
+        // P.S. Быстрый переход к файлу в CLion: Ctrl+Shift+N -> cl.h (или даже с номером строки: cl.h:103) -> Enter
         // Найдите там нужный код ошибки и ее название
         // Затем откройте документацию по clGetPlatformInfo и в секции Errors найдите ошибку, с которой столкнулись
         // в документации подробно объясняется, какой ситуации соответствует данная ошибка, и это позволит проверив код понять чем же вызвана данная ошибка (не корректным аргументом param_name)
