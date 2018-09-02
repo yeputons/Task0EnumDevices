@@ -50,7 +50,7 @@ AMD: [скачав](https://www.amd.com/en/support) и установив amdgpu
 Проверка окружения и начало выполнения задания
 ==============================================
 
-Про работу под Windows см. в секции ""
+Про работу под Windows см. в секции [Как работать под windows](https://github.com/GPGPUCourse2018/Task0EnumDevices#%D0%9A%D0%B0%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C-%D0%BF%D0%BE%D0%B4-windows).
 
 1. Сделайте fork этого репозитория
 2. ``git clone ВАШ_ФОРК_РЕПОЗИТОРИЯ``
@@ -88,5 +88,5 @@ Platform #1/1
 ========================
 
 1. Используйте 64-битный компилятор, т.е. amd64, а не x86. (Если при запуске видите ``Invalid Parameter - 100``, то вы все еще используете 32-битный компилятор)
-2. Лучше всего использовать Visual Studio 2017 Community, она поддерживает CMake-проекты, разве что передавать аргументы запускаемой программе [неудобно](https://docs.microsoft.com/en-us/cpp/ide/cmake-tools-for-visual-cpp?view=vs-2017#configure-cmake-debugging-sessions).
+2. Лучше всего использовать Visual Studio 2017 Community, она поддерживает CMake-проекты (``File`` -> ``Open`` -> ``Cmake...``). Разве что передавать аргументы запускаемой программе [неудобно](https://docs.microsoft.com/en-us/cpp/ide/cmake-tools-for-visual-cpp?view=vs-2017#configure-cmake-debugging-sessions).
 3. Можете использовать CLion, но я пробовал только с amd64 MSVC компилятором, и на данный момент в таком варианте нет отладчика.
