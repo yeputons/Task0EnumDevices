@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/GPGPUCourse2018/Example0EnumDevices.svg?branch=master)](https://travis-ci.com/GPGPUCourse2018/Example0EnumDevices)
+[![Build Status](https://travis-ci.com/GPGPUCourse2018/Task0EnumDevices.svg?branch=master)](https://travis-ci.com/GPGPUCourse2018/Task0EnumDevices)
 
 Установка OpenCL-драйвера для процессора
 ========================================
