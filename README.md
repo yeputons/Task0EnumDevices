@@ -67,10 +67,19 @@ Platform #1/1
     Platform name: 
 ```
 
-Если этого не произошло - создайте **Issue** с перечислением:
+Если же вы видите ошибку:
+```
+terminate called after throwing an instance of 'std::runtime_error'
+  what(): Can't init OpenCL driver!
+Aborted (Core dumped)
+```
+То попробуйте установить ```sudo apt install ocl-icd-libopencl1``` и попробовать выполнить ``./enumDevices`` снова.
+
+Если ``./enumDevices`` не показывает хотя бы одну платформу - создайте **Issue** с перечислением:
 
  - OS, процессор и видеокарта
  - Успешно ли прошла установка Intel-CPU драйвера
+ - Какое было поведение до установки пакета ``ocl-icd-libopencl1`` и какое поведение стало после
  - Вывод ``./enumDevices``
 
 Задание
