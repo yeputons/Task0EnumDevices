@@ -1,0 +1,13 @@
+CMakeCache.txt
+CMakeFiles/
+cmake_install.txt
+*.cmake
+
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.opensdf
+*.sdf
+Debug/
+/enumDevices.*/
+/x64/
