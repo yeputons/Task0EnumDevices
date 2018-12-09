@@ -99,7 +99,7 @@ int main()
             // - Еще пару или более свойств устройства, которые вам покажутся наиболее интересными
             std::cout << "        Device #" << deviceId << ":" << std::endl;
 
-            cl_uint deviceNameLength;
+            size_t deviceNameLength;
             OCL_SAFE_CALL(clGetDeviceInfo(deviceId, CL_DEVICE_NAME, 0, nullptr, &deviceNameLength));
             std::vector<unsigned char> deviceName(deviceNameLength);
             OCL_SAFE_CALL(clGetDeviceInfo(deviceId, CL_DEVICE_NAME, deviceNameLength, deviceName.data(), nullptr));
@@ -120,7 +120,23 @@ int main()
             cl_ulong globalMemCacheSize;
             OCL_SAFE_CALL(clGetDeviceInfo(deviceId, CL_DEVICE_GLOBAL_MEM_CACHE_SIZE, sizeof(globalMemCacheSize), &globalMemCacheSize, nullptr));
             std::cout << "            global mem cache size: " << globalMemCacheSize << std::endl;
-        }
+
+			cl_ulong localMemSize;
+			OCL_SAFE_CALL(clGetDeviceInfo(deviceId, CL_DEVICE_LOCAL_MEM_SIZE, sizeof(localMemSize), &localMemSize, nullptr));
+			std::cout << "            local mem size: " << localMemSize << std::endl;
+
+			cl_uint maxComputeUnits;
+			OCL_SAFE_CALL(clGetDeviceInfo(deviceId, CL_DEVICE_MAX_COMPUTE_UNITS, sizeof(maxComputeUnits), &maxComputeUnits, nullptr));
+			std::cout << "            max compute units: " << maxComputeUnits << std::endl;
+
+			size_t maxWorkGroupSize;
+			OCL_SAFE_CALL(clGetDeviceInfo(deviceId, CL_DEVICE_MAX_WORK_GROUP_SIZE, sizeof(maxWorkGroupSize), &maxWorkGroupSize, nullptr));
+			std::cout << "            max work group size: " << maxWorkGroupSize << std::endl;
+
+			cl_uint maxClockMhz;
+			OCL_SAFE_CALL(clGetDeviceInfo(deviceId, CL_DEVICE_MAX_CLOCK_FREQUENCY, sizeof(maxClockMhz), &maxClockMhz, nullptr));
+			std::cout << "            max clock frequency (MHz): " << maxClockMhz << std::endl;
+		}
     }
 
     return 0;
